@@ -8,10 +8,131 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/orange"
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/temperatureTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"/>
+        android:textSize="150sp"
+        android:text="@string/temperature"
+        android:textColor="@color/white"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/celsiusImageView"
+        android:src="@drawable/degree"
+        android:layout_marginRight="55dp"
+        android:layout_marginEnd="55dp"
+        android:contentDescription="@string/celsius"
+        android:layout_alignTop="@+id/temperatureTextView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="28dp"/>
+
+    <TextView
+        android:id="@+id/timeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:text="11:20"
+        android:textColor="#80FFFFFF"
+        android:layout_above="@+id/temperatureTextView"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/timezoneTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:layout_marginBottom="20dp"
+        android:text="@string/timezone"
+        android:textColor="@color/white"
+        android:layout_above="@+id/timeTextView"
+        android:layout_centerHorizontal="true"/>
+
+    <ImageView
+        android:id="@+id/iconWeatherImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/cloudy"
+        android:contentDescription="@string/icon"
+        android:layout_alignBottom="@+id/timezoneTextView"
+        android:layout_toLeftOf="@+id/temperatureTextView"
+        android:layout_toStartOf="@+id/temperatureTextView"/>
+
+    <GridLayout
+        android:id="@+id/grid_layout"
+        android:layout_alignStart="@id/temperatureTextView"
+        android:layout_alignLeft="@id/temperatureTextView"
+        android:layout_alignEnd="@id/temperatureTextView"
+        android:layout_alignRight="@id/temperatureTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/temperatureTextView"
+        android:layout_centerHorizontal="true"
+        android:useDefaultMargins="true"
+        android:rowCount="2"
+        android:columnCount="2">
+
+        <TextView
+            android:id="@+id/humidity_label"
+            android:layout_gravity="left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/humidity_label"
+            android:textColor="@color/white"
+            android:layout_row="0"
+            android:layout_column="0"/>
+
+        <TextView
+            android:id="@+id/rain_label"
+            android:layout_gravity="right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rain_label"
+            android:textColor="@color/white"
+            android:layout_row="0"
+            android:layout_column="1"/>
+
+        <TextView
+            android:id="@+id/humidity"
+            android:layout_gravity="left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:textSize="24sp"
+            android:textColor="@color/white"
+            android:text="info"/>
+
+        <TextView
+            android:id="@+id/rain"
+            android:layout_gravity="right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:textSize="24sp"
+            android:textColor="@color/white"
+            android:text="info"/>
+    </GridLayout>
+
+    <TextView
+        android:id="@+id/summary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:text="summary"
+        android:layout_below="@+id/grid_layout"
+        android:layout_alignRight="@+id/timezoneTextView"
+        android:layout_alignEnd="@+id/timezoneTextView"
+        android:layout_marginTop="40dp"/>
+
+
 </RelativeLayout>

@@ -1,10 +1,7 @@
 package com.qqq.stormy.model;
 
 import com.google.gson.annotations.SerializedName;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.TimeZone;
+import com.qqq.stormy.R;
 
 public class CurrentWeather {
     @SerializedName("time")
@@ -14,7 +11,7 @@ public class CurrentWeather {
     @SerializedName("icon")
     private String mIcon;
     @SerializedName("precipProbability")
-    private int mPrecipProbability;
+    private double mPrecipProbability;
     @SerializedName("temperature")
     private double mTemperature;
     @SerializedName("humidity")
@@ -24,7 +21,7 @@ public class CurrentWeather {
 
     private IconManager mIconManager = new IconManager();
 
-    public CurrentWeather(long timeInSeconds, String summary, String icon, int precipProbability, double temperature, double humidity, double windSpeed, IconManager iconManager) {
+    public CurrentWeather(long timeInSeconds, String summary, String icon, double precipProbability, double temperature, double humidity, double windSpeed) {
         mTimeInSeconds = timeInSeconds;
         mSummary = summary;
         mIcon = icon;
@@ -32,16 +29,46 @@ public class CurrentWeather {
         mTemperature = temperature;
         mHumidity = humidity;
         mWindSpeed = windSpeed;
-        mIconManager = iconManager;
     }
 
-    public double getTemperatureInCelsius() {
-        return (mTemperature - 32) * 5 / 9;
+    public int getTemperatureInCelsius() {
+        return (int) ((mTemperature - 32) * 5 / 9);
     }
 
     public int getIconId() {
         // clear-day, clear-night, rain, snow, sleet, wind, fog, cloudy, partly-cloudy-day, or partly-cloudy-night
-        return mIconManager.getIconId(mIcon);
+        int iconId = R.drawable.clear_day;
+        if (mIcon.equals("clear-day")) {
+            iconId = R.drawable.clear_day;
+        }
+        else if (mIcon.equals("clear-night")) {
+            iconId = R.drawable.clear_night;
+        }
+        else if (mIcon.equals("rain")) {
+            iconId = R.drawable.rain;
+        }
+        else if (mIcon.equals("snow")) {
+            iconId = R.drawable.snow;
+        }
+        else if (mIcon.equals("sleet")) {
+            iconId = R.drawable.sleet;
+        }
+        else if (mIcon.equals("wind")) {
+            iconId = R.drawable.wind;
+        }
+        else if (mIcon.equals("fog")) {
+            iconId = R.drawable.fog;
+        }
+        else if (mIcon.equals("cloudy")) {
+            iconId = R.drawable.cloudy;
+        }
+        else if (mIcon.equals("partly-cloudy-day")) {
+            iconId = R.drawable.partly_cloudy;
+        }
+        else if (mIcon.equals("partly-cloudy-night")) {
+            iconId = R.drawable.cloudy_night;
+        }
+        return iconId;
     }
 
     public long getTimeInSeconds() {
@@ -69,11 +96,11 @@ public class CurrentWeather {
         mIcon = icon;
     }
 
-    public int getPrecipProbability() {
+    public double getPrecipProbability() {
         return mPrecipProbability;
     }
 
-    public void setPrecipProbability(int precipProbability) {
+    public void setPrecipProbability(double precipProbability) {
         mPrecipProbability = precipProbability;
     }
 
@@ -126,36 +153,3 @@ public class CurrentWeather {
                 '}';
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//    public String getFormattingTime() {
-//        SimpleDateFormat formatter = new SimpleDateFormat("k:mm");
-//        formatter.setTimeZone(TimeZone.getTimeZone(mForecast.getTimezone()));
-//        String timeString = formatter.format(new Date(mTimeInSeconds * 1000));
-//
-//        return timeString;
-//    }

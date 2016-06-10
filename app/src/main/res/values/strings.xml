@@ -6,4 +6,11 @@
     <string name="unavailable_message">Network is unavailable</string>
     <string name="error_title_network">Network error</string>
     <string name="error_desc_network">Please, check your internet connection</string>
+    <string name="temperature">##</string>
+    <string name="time">place for time</string>
+    <string name="timezone">timezone</string>
+    <string name="icon">place for icon</string>
+    <string name="celsius">celsium</string>
+    <string name="humidity_label">Humidity</string>
+    <string name="rain_label">Precip?</string>
 </resources>
