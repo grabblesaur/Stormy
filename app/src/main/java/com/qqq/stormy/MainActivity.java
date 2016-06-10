@@ -15,18 +15,20 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView mTemperature;
-    private TextView mCurrentTime;
-    private TextView mTimeZone;
-    private ImageView mIconWeather;
-    private TextView mHumidity;
-    private TextView mRainPrecip;
-    private TextView mSummary;
+    @BindView(R.id.temperatureTextView) TextView mTemperature;
+    @BindView(R.id.timeTextView) TextView mCurrentTime;
+    @BindView(R.id.timezoneTextView) TextView mTimeZone;
+    @BindView(R.id.iconWeatherImageView) ImageView mIconWeather;
+    @BindView(R.id.humidity) TextView mHumidity;
+    @BindView(R.id.rain) TextView mRainPrecip;
+    @BindView(R.id.summary) TextView mSummary;
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
@@ -61,25 +63,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void settingUpLayout(CurrentWeather currentWeather, Forecast forecast) {
-        mTemperature = (TextView) findViewById(R.id.temperatureTextView);
+        ButterKnife.bind(this);
+
         mTemperature.setText(String.valueOf(currentWeather.getTemperatureInCelsius()));
-
-        mCurrentTime = (TextView) findViewById(R.id.timeTextView);
         mCurrentTime.setText(getFormattedTime(currentWeather.getTimeInSeconds(), forecast));
-
-        mTimeZone = (TextView) findViewById(R.id.timezoneTextView);
         mTimeZone.setText(forecast.getTimezone());
-
-        mIconWeather = (ImageView) findViewById(R.id.iconWeatherImageView);
         mIconWeather.setImageResource(currentWeather.getIconId());
-
-        mHumidity = (TextView) findViewById(R.id.humidity);
         mHumidity.setText(String.valueOf(currentWeather.getHumidity()));
-
-        mRainPrecip = (TextView) findViewById(R.id.rain);
         mRainPrecip.setText(String.valueOf(currentWeather.getPrecipProbability()));
-
-        mSummary = (TextView) findViewById(R.id.summary);
         mSummary.setText(currentWeather.getSummary());
     }
 
