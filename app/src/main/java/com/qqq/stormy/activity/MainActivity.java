@@ -9,7 +9,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.qqq.stormy.R;
-import com.qqq.stormy.model.CurrentWeather;
+import com.qqq.stormy.model.Current;
 import com.qqq.stormy.model.Forecast;
 import com.qqq.stormy.rest.ApiClient;
 import com.qqq.stormy.rest.ApiInterface;
@@ -57,9 +57,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Forecast> call, Response<Forecast> response) {
                 Forecast forecast = response.body();
-                CurrentWeather currentWeather = response.body().getCurrentWeather();
-                Log.d(TAG, "Current Weather: " + currentWeather.toString());
-                settingUpLayout(currentWeather, forecast);
+                Current current = response.body().getCurrent();
+                Log.d(TAG, "Current Weather: " + current.toString());
+                settingUpLayout(current, forecast);
             }
 
             @Override
@@ -69,16 +69,16 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void settingUpLayout(CurrentWeather currentWeather, Forecast forecast) {
+    private void settingUpLayout(Current current, Forecast forecast) {
         ButterKnife.bind(this);
 
-        mTemperature.setText(String.valueOf(currentWeather.getTemperatureInCelsius()));
-        mCurrentTime.setText(getFormattedTime(currentWeather.getTimeInSeconds(), forecast));
+        mTemperature.setText(String.valueOf(current.getTemperatureInCelsius()));
+        mCurrentTime.setText(getFormattedTime(current.getTimeInSeconds(), forecast));
         mTimeZone.setText(forecast.getTimezone());
-        mIconWeather.setImageResource(currentWeather.getIconId());
-        mHumidity.setText(String.valueOf(currentWeather.getHumidity()));
-        mRainPrecip.setText(String.valueOf(currentWeather.getPrecipProbability()));
-        mSummary.setText(currentWeather.getSummary());
+        mIconWeather.setImageResource(current.getIconId());
+        mHumidity.setText(String.valueOf(current.getHumidity()));
+        mRainPrecip.setText(String.valueOf(current.getPrecipProbability()));
+        mSummary.setText(current.getSummary());
 
 
         // adding progress bar on RefreshImageView

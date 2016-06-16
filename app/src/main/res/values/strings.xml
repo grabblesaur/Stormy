@@ -10,7 +10,7 @@
     <string name="time">place for time</string>
     <string name="timezone">timezone</string>
     <string name="icon">place for icon</string>
-    <string name="celsius">celsium</string>
+    <string name="celsius">celsius</string>
     <string name="humidity_label">Humidity</string>
     <string name="rain_label">Precip?</string>
 </resources>

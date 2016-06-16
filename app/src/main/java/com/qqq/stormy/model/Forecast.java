@@ -1,27 +1,24 @@
 package com.qqq.stormy.model;
 
 import com.google.gson.annotations.SerializedName;
+import com.qqq.stormy.model.day.Day;
+import com.qqq.stormy.model.hour.Hour;
 
-import java.util.List;
-
-/**
- * Created by qqq on 09.06.2016.
- */
 public class Forecast {
-    @SerializedName("latitude")
-    private double mLatitude;
-    @SerializedName("longitude")
-    private double mLongitude;
-    @SerializedName("timezone")
-    private String mTimezone;
-    @SerializedName("currently")
-    private CurrentWeather mCurrentWeather;
+    @SerializedName("latitude") private double mLatitude;
+    @SerializedName("longitude") private double mLongitude;
+    @SerializedName("timezone") private String mTimezone;
+    @SerializedName("currently") private Current mCurrent;
+    @SerializedName("hourly") private Hour mHour;
+    @SerializedName("daily") private Day mDay;
 
-    public Forecast(double latitude, double longitude, String timezone, CurrentWeather currentWeather) {
+    public Forecast(double latitude, double longitude, String timezone, Current current, Hour hour, Day day) {
         mLatitude = latitude;
         mLongitude = longitude;
         mTimezone = timezone;
-        mCurrentWeather = currentWeather;
+        mCurrent = current;
+        mHour = hour;
+        mDay = day;
     }
 
     public double getLatitude() {
@@ -48,11 +45,27 @@ public class Forecast {
         mTimezone = timezone;
     }
 
-    public CurrentWeather getCurrentWeather() {
-        return mCurrentWeather;
+    public Current getCurrent() {
+        return mCurrent;
     }
 
-    public void setCurrentWeather(CurrentWeather currentWeather) {
-        mCurrentWeather = currentWeather;
+    public void setCurrent(Current current) {
+        mCurrent = current;
+    }
+
+    public Hour getHour() {
+        return mHour;
+    }
+
+    public void setHour(Hour hour) {
+        mHour = hour;
+    }
+
+    public Day getDay() {
+        return mDay;
+    }
+
+    public void setDay(Day day) {
+        mDay = day;
     }
 }

@@ -3,7 +3,7 @@ package com.qqq.stormy.model;
 import com.google.gson.annotations.SerializedName;
 import com.qqq.stormy.R;
 
-public class CurrentWeather {
+public class Current {
     @SerializedName("time")
     private long mTimeInSeconds;
     @SerializedName("summary")
@@ -20,7 +20,7 @@ public class CurrentWeather {
     private double mWindSpeed;
     private IconManager mIconManager;
 
-    public CurrentWeather(long timeInSeconds, String summary, String icon, double precipProbability, double temperature, double humidity, double windSpeed) {
+    public Current(long timeInSeconds, String summary, String icon, double precipProbability, double temperature, double humidity, double windSpeed) {
         mTimeInSeconds = timeInSeconds;
         mSummary = summary;
         mIcon = icon;
@@ -133,7 +133,7 @@ public class CurrentWeather {
 
     @Override
     public String toString() {
-        return "CurrentWeather{" +
+        return "Current{" +
                 "mTimeInSeconds=" + mTimeInSeconds +
                 ", mSummary='" + mSummary + '\'' +
                 ", mIcon='" + mIcon + '\'' +
