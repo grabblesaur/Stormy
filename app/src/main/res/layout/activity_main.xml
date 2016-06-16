@@ -11,6 +11,27 @@
     android:background="@drawable/bg_gradient"
     tools:context=".activity.MainActivity">
 
+    <ImageView
+        android:id="@+id/refreshButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/refresh"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="35dp"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/refreshButton"
+        android:layout_alignLeft="@+id/refreshButton"
+        android:layout_alignStart="@+id/refreshButton"
+        android:layout_alignRight="@+id/refreshButton"
+        android:layout_alignEnd="@+id/refreshButton"
+        android:layout_alignTop="@+id/refreshButton"/>
+
     <TextView
         android:id="@+id/temperatureTextView"
         android:layout_width="wrap_content"
@@ -34,6 +55,34 @@
         android:layout_alignParentEnd="true"
         android:layout_marginTop="28dp"/>
 
+
+    <LinearLayout
+        android:id="@+id/linear_layout_icon_time_zone"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/refreshButton"
+        android:layout_centerHorizontal="true">
+
+        <ImageView
+            android:id="@+id/iconWeatherImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/cloudy"
+            android:contentDescription="@string/icon"/>
+
+        <TextView
+            android:id="@+id/timezoneTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:textSize="25sp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/timezone"
+            android:textColor="@color/white"/>
+
+    </LinearLayout>
+
     <TextView
         android:id="@+id/timeTextView"
         android:layout_width="wrap_content"
@@ -42,85 +91,63 @@
         android:text="11:20"
         android:textColor="#80FFFFFF"
         android:layout_above="@+id/temperatureTextView"
+        android:layout_below="@id/linear_layout_icon_time_zone"
         android:layout_centerHorizontal="true"/>
 
-    <TextView
-        android:id="@+id/timezoneTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:layout_marginBottom="20dp"
-        android:text="@string/timezone"
-        android:textColor="@color/white"
-        android:layout_above="@+id/timeTextView"
-        android:layout_centerHorizontal="true"/>
-
-    <ImageView
-        android:id="@+id/iconWeatherImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/cloudy"
-        android:contentDescription="@string/icon"
-        android:layout_alignBottom="@+id/timezoneTextView"
-        android:layout_toLeftOf="@+id/temperatureTextView"
-        android:layout_toStartOf="@+id/temperatureTextView"/>
-
-    <GridLayout
+    <LinearLayout
         android:id="@+id/grid_layout"
-        android:layout_alignStart="@id/temperatureTextView"
-        android:layout_alignLeft="@id/temperatureTextView"
-        android:layout_alignEnd="@id/temperatureTextView"
-        android:layout_alignRight="@id/temperatureTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/temperatureTextView"
-        android:layout_centerHorizontal="true"
-        android:useDefaultMargins="true"
-        android:rowCount="2"
-        android:columnCount="2">
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true">
 
-        <TextView
-            android:id="@+id/humidity_label"
-            android:layout_gravity="left"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/humidity_label"
-            android:textColor="@color/white"
-            android:layout_row="0"
-            android:layout_column="0"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/humidity_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/humidity_label"
+                android:textColor="@color/white"/>
 
-        <TextView
-            android:id="@+id/rain_label"
-            android:layout_gravity="right"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/rain_label"
-            android:textColor="@color/white"
-            android:layout_row="0"
-            android:layout_column="1"/>
+            <TextView
+                android:id="@+id/rain_label"
+                android:gravity="right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/rain_label"
+                android:textColor="@color/white"/>
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/humidity"
-            android:layout_gravity="left"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="1"
-            android:layout_column="0"
-            android:textSize="24sp"
-            android:textColor="@color/white"
-            android:text="info"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/humidity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="24sp"
+                android:textColor="@color/white"
+                android:text="info"/>
 
-        <TextView
-            android:id="@+id/rain"
-            android:layout_gravity="right"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="1"
-            android:layout_column="1"
-            android:textSize="24sp"
-            android:textColor="@color/white"
-            android:text="info"/>
-    </GridLayout>
+            <TextView
+                android:id="@+id/rain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:textSize="24sp"
+                android:textColor="@color/white"
+                android:text="info"/>
+        </LinearLayout>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/summary"
@@ -132,23 +159,6 @@
         android:text="summary"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/grid_layout" />
-
-    <ImageView
-        android:id="@+id/refreshButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/refresh"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"/>
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_alignBottom="@id/refreshButton"/>
 
     <LinearLayout
         android:layout_width="match_parent"
