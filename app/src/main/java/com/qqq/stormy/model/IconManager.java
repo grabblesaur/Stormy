@@ -13,7 +13,7 @@ public class IconManager {
             R.drawable.snow, R.drawable.fog, R.drawable.sleet, R.drawable.wind, R.drawable.fog,
             R.drawable.cloudy, R.drawable.partly_cloudy, R.drawable.cloudy_night};
 
-    private Map<String, Integer> mIconsHashMap = new HashMap<>();
+    private static Map<String, Integer> mIconsHashMap = new HashMap<>();
 
     public IconManager() {
         for (int i = 0; i < mIconsNames.length; i++) {
@@ -21,7 +21,7 @@ public class IconManager {
         }
     }
 
-    public int getIconId(String iconName) {
+    public static int getIconId(String iconName) {
         if (mIconsHashMap.containsKey(iconName)) {
             return mIconsHashMap.get(iconName);
         } else {

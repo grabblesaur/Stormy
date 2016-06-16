@@ -1,11 +1,14 @@
-package com.qqq.stormy;
+package com.qqq.stormy.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.qqq.stormy.R;
 import com.qqq.stormy.model.CurrentWeather;
 import com.qqq.stormy.model.Forecast;
 import com.qqq.stormy.rest.ApiClient;
@@ -29,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.humidity) TextView mHumidity;
     @BindView(R.id.rain) TextView mRainPrecip;
     @BindView(R.id.summary) TextView mSummary;
+    @BindView(R.id.refreshButton) ImageView mRefreshImageView;
+    @BindView(R.id.progressBar) ProgressBar mProgressBar;
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
@@ -36,7 +41,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getDataFromForecastAPI();
+    }
 
+    private void getDataFromForecastAPI() {
         String API_KEY = "1bf4f4aad98d960c574ae8bd43502f1b";
         double latitude = 51.8092;
         double longitude = 107.6628;
@@ -50,8 +58,8 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<Forecast> call, Response<Forecast> response) {
                 Forecast forecast = response.body();
                 CurrentWeather currentWeather = response.body().getCurrentWeather();
-                settingUpLayout(currentWeather, forecast);
                 Log.d(TAG, "Current Weather: " + currentWeather.toString());
+                settingUpLayout(currentWeather, forecast);
             }
 
             @Override
@@ -59,7 +67,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.e(TAG, t.toString());
             }
         });
-
     }
 
     private void settingUpLayout(CurrentWeather currentWeather, Forecast forecast) {
@@ -72,6 +79,17 @@ public class MainActivity extends AppCompatActivity {
         mHumidity.setText(String.valueOf(currentWeather.getHumidity()));
         mRainPrecip.setText(String.valueOf(currentWeather.getPrecipProbability()));
         mSummary.setText(currentWeather.getSummary());
+
+
+        // adding progress bar on RefreshImageView
+        mProgressBar.setVisibility(View.INVISIBLE);
+        mRefreshImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mProgressBar.setVisibility(View.VISIBLE);
+                getDataFromForecastAPI();
+            }
+        });
     }
 
     private String getFormattedTime(long timeInSeconds, Forecast forecast) {

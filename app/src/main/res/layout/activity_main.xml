@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@color/orange"
-    tools:context=".MainActivity">
+    tools:context=".activity.MainActivity">
 
     <TextView
         android:id="@+id/temperatureTextView"
@@ -124,15 +124,30 @@
 
     <TextView
         android:id="@+id/summary"
+        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:text="summary"
-        android:layout_below="@+id/grid_layout"
-        android:layout_alignRight="@+id/timezoneTextView"
-        android:layout_alignEnd="@+id/timezoneTextView"
-        android:layout_marginTop="40dp"/>
+        android:layout_marginTop="19dp"
+        android:layout_below="@+id/grid_layout" />
 
+    <ImageView
+        android:id="@+id/refreshButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/refresh"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_alignBottom="@id/refreshButton"/>
 
 </RelativeLayout>
