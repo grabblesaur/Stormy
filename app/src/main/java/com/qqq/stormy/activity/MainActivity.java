@@ -11,11 +11,14 @@ import android.widget.TextView;
 import com.qqq.stormy.R;
 import com.qqq.stormy.model.Current;
 import com.qqq.stormy.model.Forecast;
+import com.qqq.stormy.model.day.DailyData;
+import com.qqq.stormy.model.hour.HourlyData;
 import com.qqq.stormy.rest.ApiClient;
 import com.qqq.stormy.rest.ApiInterface;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
 
 import butterknife.BindView;
@@ -58,7 +61,13 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<Forecast> call, Response<Forecast> response) {
                 Forecast forecast = response.body();
                 Current current = response.body().getCurrent();
+                List<HourlyData> hourlyDataList = response.body().getHour().getHourlyDataList();
+                List<DailyData> dailyDataList = response.body().getDay().getDailyDataList();
+
                 Log.d(TAG, "Current Weather: " + current.toString());
+                Log.d(TAG, "Hourly Weather: " + hourlyDataList);
+                Log.d(TAG, "Daily Weather: " + dailyDataList);
+
                 settingUpLayout(current, forecast);
             }
 

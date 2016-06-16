@@ -6,4 +6,5 @@
 
     <color name="orange">#FFFFB300</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="semi_transparent_white">#40FFFFFF</color>
 </resources>

@@ -13,4 +13,6 @@
     <string name="celsius">celsius</string>
     <string name="humidity_label">Humidity</string>
     <string name="rain_label">Precip?</string>
+    <string name="hourly_button">hourly</string>
+    <string name="daily_button">daily</string>
 </resources>

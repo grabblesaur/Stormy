@@ -8,14 +8,14 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@color/orange"
+    android:background="@drawable/bg_gradient"
     tools:context=".activity.MainActivity">
 
     <TextView
         android:id="@+id/temperatureTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="150sp"
+        android:textSize="130sp"
         android:text="@string/temperature"
         android:textColor="@color/white"
         android:layout_centerVertical="true"
@@ -27,7 +27,7 @@
         android:id="@+id/celsiusImageView"
         android:src="@drawable/degree"
         android:layout_marginRight="55dp"
-        android:layout_marginEnd="55dp"
+        android:layout_marginEnd="60dp"
         android:contentDescription="@string/celsius"
         android:layout_alignTop="@+id/temperatureTextView"
         android:layout_alignParentRight="true"
@@ -130,7 +130,7 @@
         android:textColor="@color/white"
         android:textSize="24sp"
         android:text="summary"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="10dp"
         android:layout_below="@+id/grid_layout" />
 
     <ImageView
@@ -149,5 +149,32 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_alignBottom="@id/refreshButton"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_below="@id/summary"
+        android:layout_marginTop="15dp"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:id="@+id/hourly_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/hourly_button"
+            android:background="@color/semi_transparent_white"/>
+
+        <Button
+            android:id="@+id/daily_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/daily_button"
+            android:layout_marginLeft="2dp"
+            android:background="@color/semi_transparent_white"/>
+
+    </LinearLayout>
 
 </RelativeLayout>
