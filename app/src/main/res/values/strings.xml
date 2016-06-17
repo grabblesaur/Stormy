@@ -15,4 +15,8 @@
     <string name="rain_label">Precip?</string>
     <string name="hourly_button">hourly</string>
     <string name="daily_button">daily</string>
+    <string name="summary">summary</string>
+    <string name="time_example">11:20</string>
+    <string name="refreshButton">refresh btn</string>
+    <string name="info">info</string>
 </resources>

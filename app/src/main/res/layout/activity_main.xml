@@ -13,12 +13,12 @@
 
     <ImageView
         android:id="@+id/refreshButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
         android:src="@drawable/refresh"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="35dp"/>
+        android:layout_alignParentTop="true"
+        android:contentDescription="@string/refreshButton"/>
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -32,36 +32,13 @@
         android:layout_alignEnd="@+id/refreshButton"
         android:layout_alignTop="@+id/refreshButton"/>
 
-    <TextView
-        android:id="@+id/temperatureTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="130sp"
-        android:text="@string/temperature"
-        android:textColor="@color/white"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"/>
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/celsiusImageView"
-        android:src="@drawable/degree"
-        android:layout_marginRight="55dp"
-        android:layout_marginEnd="60dp"
-        android:contentDescription="@string/celsius"
-        android:layout_alignTop="@+id/temperatureTextView"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="28dp"/>
-
-
     <LinearLayout
         android:id="@+id/linear_layout_icon_time_zone"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/refreshButton"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp">
 
         <ImageView
             android:id="@+id/iconWeatherImageView"
@@ -88,11 +65,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18sp"
-        android:text="11:20"
+        android:text="@string/time_example"
         android:textColor="#80FFFFFF"
         android:layout_above="@+id/temperatureTextView"
         android:layout_below="@id/linear_layout_icon_time_zone"
         android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/temperatureTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="130sp"
+        android:text="@string/temperature"
+        android:textColor="@color/white"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/celsiusImageView"
+        android:src="@drawable/degree"
+        android:contentDescription="@string/celsius"
+        android:layout_below="@+id/timeTextView"
+        android:layout_alignRight="@+id/grid_layout"
+        android:layout_alignEnd="@+id/grid_layout"/>
+
 
     <LinearLayout
         android:id="@+id/grid_layout"
@@ -116,7 +114,7 @@
 
             <TextView
                 android:id="@+id/rain_label"
-                android:gravity="right"
+                android:gravity="end"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -135,17 +133,17 @@
                 android:layout_weight="1"
                 android:textSize="24sp"
                 android:textColor="@color/white"
-                android:text="info"/>
+                android:text="@string/info"/>
 
             <TextView
                 android:id="@+id/rain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="right"
+                android:gravity="end"
                 android:textSize="24sp"
                 android:textColor="@color/white"
-                android:text="info"/>
+                android:text="@string/info"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -156,34 +154,39 @@
         android:layout_height="wrap_content"
         android:textColor="@color/white"
         android:textSize="24sp"
-        android:text="summary"
+        android:text="@string/summary"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/grid_layout" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_below="@id/summary"
         android:layout_marginTop="15dp"
         android:layout_alignParentBottom="true">
 
         <Button
+            style="?android:attr/buttonBarButtonStyle"
             android:id="@+id/hourly_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/hourly_button"
-            android:background="@color/semi_transparent_white"/>
+            android:background="@color/semi_transparent_white"
+            android:textColor="@color/white"/>
 
         <Button
+            style="?android:attr/buttonBarButtonStyle"
             android:id="@+id/daily_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/daily_button"
             android:layout_marginLeft="2dp"
-            android:background="@color/semi_transparent_white"/>
+            android:layout_marginStart="2dp"
+            android:background="@color/semi_transparent_white"
+            android:textColor="@color/white"/>
 
     </LinearLayout>
 
