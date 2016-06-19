@@ -12,15 +12,6 @@ public class Forecast {
     @SerializedName("hourly") private Hour mHour;
     @SerializedName("daily") private Day mDay;
 
-    public Forecast(double latitude, double longitude, String timezone, Current current, Hour hour, Day day) {
-        mLatitude = latitude;
-        mLongitude = longitude;
-        mTimezone = timezone;
-        mCurrent = current;
-        mHour = hour;
-        mDay = day;
-    }
-
     public double getLatitude() {
         return mLatitude;
     }

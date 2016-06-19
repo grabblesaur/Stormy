@@ -19,4 +19,6 @@
     <string name="time_example">11:20</string>
     <string name="refreshButton">refresh btn</string>
     <string name="info">info</string>
+    <string name="day_of_the_week_example">Wednesday</string>
+    <string name="no_data">There is no data to display</string>
 </resources>

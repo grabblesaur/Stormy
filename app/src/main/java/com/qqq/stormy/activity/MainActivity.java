@@ -1,5 +1,7 @@
 package com.qqq.stormy.activity;
 
+import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,12 +19,14 @@ import com.qqq.stormy.rest.ApiClient;
 import com.qqq.stormy.rest.ApiInterface;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -38,7 +42,13 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.refreshButton) ImageView mRefreshImageView;
     @BindView(R.id.progressBar) ProgressBar mProgressBar;
 
+    public static final String DAILY_FORECAST = "daily forecast";
+    public static final String TIMEZONE = "time zone";
+
     public static final String TAG = MainActivity.class.getSimpleName();
+
+    private List<DailyData> mDailyDataList;
+    private Forecast mForecast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,16 +69,16 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<Forecast>() {
             @Override
             public void onResponse(Call<Forecast> call, Response<Forecast> response) {
-                Forecast forecast = response.body();
+                mForecast = response.body();
                 Current current = response.body().getCurrent();
                 List<HourlyData> hourlyDataList = response.body().getHour().getHourlyDataList();
-                List<DailyData> dailyDataList = response.body().getDay().getDailyDataList();
+                mDailyDataList = response.body().getDay().getDailyDataList();
 
                 Log.d(TAG, "Current Weather: " + current.toString());
                 Log.d(TAG, "Hourly Weather: " + hourlyDataList);
-                Log.d(TAG, "Daily Weather: " + dailyDataList);
+                Log.d(TAG, "Daily Weather: " + mDailyDataList);
 
-                settingUpLayout(current, forecast);
+                settingUpLayout(current, mForecast);
             }
 
             @Override
@@ -105,6 +115,12 @@ public class MainActivity extends AppCompatActivity {
         SimpleDateFormat formatter = new SimpleDateFormat("k:mm");
         formatter.setTimeZone(TimeZone.getTimeZone(forecast.getTimezone()));
         return formatter.format(new Date(timeInSeconds * 1000));
+    }
+
+    @OnClick(R.id.daily_button) void startDailyActivity() {
+        Intent intent = new Intent(this, DailyActivity.class);
+        intent.putParcelableArrayListExtra(DAILY_FORECAST, (ArrayList<? extends Parcelable>) mDailyDataList);
+        startActivity(intent);
     }
 }
 
