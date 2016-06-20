@@ -17,15 +17,15 @@ public class DailyData implements Parcelable{
     @SerializedName("time") private long mTimeInSeconds;
     @SerializedName("summary") private String mSummary;
     @SerializedName("icon") private String mIconString;
-    @SerializedName("temperatureMin") private String mTemperatureMinF;
-    @SerializedName("temperatureMax") private String mTemperatureMaxF;
+    @SerializedName("temperatureMin") private double mTemperatureMinF;
+    @SerializedName("temperatureMax") private double mTemperatureMaxF;
 
     protected DailyData(Parcel in) {
         mTimeInSeconds = in.readLong();
         mSummary = in.readString();
         mIconString = in.readString();
-        mTemperatureMinF = in.readString();
-        mTemperatureMaxF = in.readString();
+        mTemperatureMinF = in.readDouble();
+        mTemperatureMaxF = in.readDouble();
     }
 
     public static final Creator<DailyData> CREATOR = new Creator<DailyData>() {
@@ -50,8 +50,8 @@ public class DailyData implements Parcelable{
         dest.writeLong(mTimeInSeconds);
         dest.writeString(mSummary);
         dest.writeString(mIconString);
-        dest.writeString(mTemperatureMinF);
-        dest.writeString(mTemperatureMaxF);
+        dest.writeDouble(mTemperatureMinF);
+        dest.writeDouble(mTemperatureMaxF);
     }
 
     public long getTimeInSeconds() {
@@ -78,19 +78,19 @@ public class DailyData implements Parcelable{
         mIconString = iconString;
     }
 
-    public String getTemperatureMinF() {
+    public double getTemperatureMinF() {
         return mTemperatureMinF;
     }
 
-    public void setTemperatureMinF(String temperatureMinF) {
+    public void setTemperatureMinF(double temperatureMinF) {
         mTemperatureMinF = temperatureMinF;
     }
 
-    public String getTemperatureMaxF() {
+    public double getTemperatureMaxF() {
         return mTemperatureMaxF;
     }
 
-    public void setTemperatureMaxF(String temperatureMaxF) {
+    public void setTemperatureMaxF(double temperatureMaxF) {
         mTemperatureMaxF = temperatureMaxF;
     }
 
@@ -106,5 +106,13 @@ public class DailyData implements Parcelable{
         Date dateTime = new Date(mTimeInSeconds * 1000);
 
         return formatter.format(dateTime);
+    }
+
+    public int getTemperatureMaxInCelsius() {
+        return (int) Math.round(5 * (mTemperatureMaxF - 32) / 9);
+    }
+
+    public int getTemperatureMinInCelsius() {
+        return (int) Math.round(5 * (mTemperatureMinF - 32) / 9);
     }
 }

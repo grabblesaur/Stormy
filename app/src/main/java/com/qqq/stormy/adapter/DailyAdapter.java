@@ -57,8 +57,8 @@ public class DailyAdapter extends BaseAdapter{
         DailyData dailyData = mDailyDataList.get(position);
 
         holder.iconImageView.setImageResource(dailyData.getIconId());
-        holder.temperatureMaxLabel.setText(dailyData.getTemperatureMaxF());
-        holder.temperatureMinLabel.setText(dailyData.getTemperatureMinF());
+        holder.temperatureMaxLabel.setText(String.valueOf(dailyData.getTemperatureMaxInCelsius()));
+        holder.temperatureMinLabel.setText(String.valueOf(dailyData.getTemperatureMinInCelsius()));
         holder.dayOfTheWeekLabel.setText(dailyData.getDayOfTheWeek());
 
         return convertView;
