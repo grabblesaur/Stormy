@@ -7,7 +7,7 @@
     <string name="error_title_network">Network error</string>
     <string name="error_desc_network">Please, check your internet connection</string>
     <string name="temperature">##</string>
-    <string name="time">place for time</string>
+    <string name="time">hh:mm</string>
     <string name="timezone">timezone</string>
     <string name="icon">place for icon</string>
     <string name="celsius">celsius</string>
@@ -24,4 +24,5 @@
     <string name="max_temp">Max:</string>
     <string name="min_temp">Min:</string>
     <string name="icon_weather">icon weather</string>
+    <string name="this_week_label">This Week\'s Weather</string>
 </resources>

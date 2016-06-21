@@ -13,19 +13,13 @@ public class IconManager {
             R.drawable.snow, R.drawable.fog, R.drawable.sleet, R.drawable.wind, R.drawable.fog,
             R.drawable.cloudy, R.drawable.partly_cloudy, R.drawable.cloudy_night};
 
-    private static Map<String, Integer> mIconsHashMap = new HashMap<>();
-
-    public IconManager() {
-        for (int i = 0; i < mIconsNames.length; i++) {
-            mIconsHashMap.put(mIconsNames[i], mIconsId[i]);
-        }
-    }
-
     public static int getIconId(String iconName) {
-        if (mIconsHashMap.containsKey(iconName)) {
-            return mIconsHashMap.get(iconName);
-        } else {
-            return R.drawable.clear_day;
+        for (int i = 0; i < mIconsNames.length; i++) {
+            if (iconName.equals(mIconsNames[i])) {
+                return mIconsId[i];
+            }
         }
+
+        return R.drawable.partly_cloudy;
     }
 }

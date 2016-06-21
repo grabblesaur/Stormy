@@ -42,13 +42,13 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.refreshButton) ImageView mRefreshImageView;
     @BindView(R.id.progressBar) ProgressBar mProgressBar;
 
+    public static final String HOURLY_FORECAST = "hourly forecast";
     public static final String DAILY_FORECAST = "daily forecast";
-    public static final String TIMEZONE = "time zone";
-
     public static final String TAG = MainActivity.class.getSimpleName();
 
     private List<DailyData> mDailyDataList;
     private Forecast mForecast;
+    private List<HourlyData> mHourlyDataList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,11 +71,11 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<Forecast> call, Response<Forecast> response) {
                 mForecast = response.body();
                 Current current = response.body().getCurrent();
-                List<HourlyData> hourlyDataList = response.body().getHour().getHourlyDataList();
+                mHourlyDataList = response.body().getHour().getHourlyDataList();
                 mDailyDataList = response.body().getDay().getDailyDataList();
 
                 Log.d(TAG, "Current Weather: " + current.toString());
-                Log.d(TAG, "Hourly Weather: " + hourlyDataList);
+                Log.d(TAG, "Hourly Weather: " + mHourlyDataList);
                 Log.d(TAG, "Daily Weather: " + mDailyDataList);
 
                 settingUpLayout(current, mForecast);
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String getFormattedTime(long timeInSeconds, Forecast forecast) {
-        SimpleDateFormat formatter = new SimpleDateFormat("k:mm");
+        SimpleDateFormat formatter = new SimpleDateFormat("H:mm");
         formatter.setTimeZone(TimeZone.getTimeZone(forecast.getTimezone()));
         return formatter.format(new Date(timeInSeconds * 1000));
     }
@@ -120,6 +120,12 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.daily_button) void startDailyActivity() {
         Intent intent = new Intent(this, DailyActivity.class);
         intent.putParcelableArrayListExtra(DAILY_FORECAST, (ArrayList<? extends Parcelable>) mDailyDataList);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.hourly_button) void startHourlyActivity() {
+        Intent intent = new Intent(this, HourlyActivity.class);
+        intent.putParcelableArrayListExtra(HOURLY_FORECAST, (ArrayList<? extends Parcelable>) mHourlyDataList);
         startActivity(intent);
     }
 }

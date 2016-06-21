@@ -4,9 +4,6 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-/**
- * Created by qqq on 16.06.2016.
- */
 public class Hour {
     @SerializedName("summary") private String mSummary;
     @SerializedName("icon") private String mIconString;
