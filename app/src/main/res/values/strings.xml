@@ -21,4 +21,7 @@
     <string name="info">info</string>
     <string name="day_of_the_week_example">Wednesday</string>
     <string name="no_data">There is no data to display</string>
+    <string name="max_temp">Max:</string>
+    <string name="min_temp">Min:</string>
+    <string name="icon_weather">icon weather</string>
 </resources>
